@@ -145,16 +145,26 @@ function reset() {
 	//reset general search fields
 	document.getElementsByName("general").forEach(function(element) {
 		element.checked = false;
+		console.log(element);
 	});
 	document.getElementById("general").disabled = true;
 	
 	
-	document.getElementById("result").innerHTML = showTable(itemList);
-	
+	const ul = document.getElementById("result");
+	for (item of itemList) {				
+		let li = document.createElement("li");
+		let itemValue = item.fullInfo;
+		li.appendChild(document.createTextNode(itemValue));
+		ul.appendChild(li);
+	}  
 }
 
 function resetList() {
-	document.getElementById("result").innerHTML = "";
+	const ul = document.getElementById("result");
+
+	while (ul.firstChild) {
+		ul.removeChild(ul.firstChild);
+	}
 }
 
 function search() {
@@ -205,8 +215,13 @@ function search() {
 		}
 	}
 
-	 document.getElementById("result").innerHTML = showTable(result);
-
+	const ul = document.getElementById("result");
+			for (item of result) {				
+				let li = document.createElement("li");
+				let itemValue = item.fullInfo;
+				li.appendChild(document.createTextNode(itemValue));
+				ul.appendChild(li);
+			}
 		
 	if (!checkboxChecked)
 		reset();
@@ -214,11 +229,16 @@ function search() {
 
 function generalSearch(val) {
 	let result = itemList.filter(element => element.fullInfo.toLowerCase().includes(val.value.toLowerCase()));
-	resetList();  //make table empty
+	resetList();  //make ul empty
 
 	//display result
-	document.getElementById("result").innerHTML = showTable(result);
-	
+	const ul = document.getElementById("result");
+	for (item of result) {				
+		let li = document.createElement("li");
+		let itemValue = item.fullInfo;
+		li.appendChild(document.createTextNode(itemValue));
+		ul.appendChild(li);
+	}
 }
 
 function filterByText(original, type, val) {

@@ -145,11 +145,12 @@ function reset() {
 	//reset general search fields
 	document.getElementsByName("general").forEach(function(element) {
 		element.checked = false;
+		console.log(element);
 	});
 	document.getElementById("general").disabled = true;
 	
 	
-	document.getElementById("result").innerHTML = showTable(itemList);
+	document.getElementById("result") = showTable(itemList);
 	
 }
 

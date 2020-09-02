@@ -149,7 +149,7 @@ function reset() {
 	document.getElementById("general").disabled = true;
 	
 	
-	document.getElementById("result").innerHTML = showTable(itemList);
+	document.getElementById("result") = showTable(itemList);
 	
 }
 

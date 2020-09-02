@@ -145,11 +145,12 @@ function reset() {
 	//reset general search fields
 	document.getElementsByName("general").forEach(function(element) {
 		element.checked = false;
+		console.log(element);
 	});
 	document.getElementById("general").disabled = true;
 	
 	
-	document.getElementById("result").innerHTML = showTable(itemList);
+	document.getElementById("result").showTable(itemList);
 	
 }
 
@@ -214,7 +215,7 @@ function search() {
 
 function generalSearch(val) {
 	let result = itemList.filter(element => element.fullInfo.toLowerCase().includes(val.value.toLowerCase()));
-	resetList();  //make table empty
+	resetList();  //make ul empty
 
 	//display result
 	document.getElementById("result").innerHTML = showTable(result);
