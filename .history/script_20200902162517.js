@@ -118,12 +118,12 @@ function search() {
 						//string includes text
 						result = filterByText(itemList, element.value, temp[1], result);
 					} else {
-						if (temp[0] == "")
-							//if *app => end with
-							result = advancedFilterByText(itemList, element.value, temp[1], result, "end");
+						if (temp[0] != "")
+							//if *app => start with
+							result = advancedFilterByText(itemList, element.value, temp[1], result, "start");
 						else 
 							//if app* => end with
-							result = advancedFilterByText(itemList, element.value, temp[0], result, "start");
+							result = advancedFilterByText(itemList, element.value, temp[0], result, "end");
 					}
 				} else { //else = color select chosen
 					let selectValue = document.getElementById("color-select").value;
