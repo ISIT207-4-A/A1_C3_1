@@ -72,40 +72,33 @@ var countCheck = 0;
 var limitAll = false;
 
 function checkLimit(checkboxStatus) {
-	//if general checkbox is checked, cannot check anything else
-	if (limitAll && checkboxStatus.name != "general") {
-		checkboxStatus.checked = false;
-		return;
-	}
-
 	if (checkboxStatus.name == "general") {
-		if (checkboxStatus.checked) {
+		if (checkboxStatus.checked)
 			limitAll = true;
-			document.getElementById("general").disabled = false;
-		} else {
-			limitAll = false;
-			document.getElementById("general").disabled = true;
-		}
+		else limitAll = false;	
 	}
 	
-	if (!checkboxStatus.checked) {
-		countCheck--;
+	if (!limitAll) {
+		if (!checkboxStatus.checked) {
+			countCheck--;
+			let checkboxValue = checkboxStatus.value;
+			for (element of document.getElementsByClassName(checkboxValue))
+				element.disabled = true;
+			return;
+		}
+	
+		if (countCheck >= 2) {
+			checkboxStatus.checked = false;
+			return;
+		}
+	
+		countCheck++;
+	
 		let checkboxValue = checkboxStatus.value;
 		for (element of document.getElementsByClassName(checkboxValue))
-			element.disabled = true;
-		return;
+			element.disabled = false;
 	}
-
-	if (countCheck >= 2) {
-		checkboxStatus.checked = false;
-		return;
-	}
-
-	countCheck++;
-
-	let checkboxValue = checkboxStatus.value;
-	for (element of document.getElementsByClassName(checkboxValue))
-		element.disabled = false;
+	
 }
 
 //reset button
@@ -118,14 +111,7 @@ function reset() {
 			ele.value = "";
 		}
 	}
-	
-	const ul = document.getElementById("result");
-	for (item of itemList) {				
-		let li = document.createElement("li");
-		let itemValue = item.fullInfo;
-		li.appendChild(document.createTextNode(itemValue));
-		ul.appendChild(li);
-	}  
+	resetList();
 }
 
 function resetList() {
@@ -140,7 +126,6 @@ function search() {
 	resetList();
 	var temp = document.getElementsByName("attribute");
 	var result = new Array();
-	var checkboxChecked = false;
 
 	for (element of temp) {
 		if (element.checked) {
@@ -178,34 +163,17 @@ function search() {
 
 			}
 
-			const ul = document.getElementById("result");
+			var ul = document.getElementById("result");
 			for (item of result) {				
 				let li = document.createElement("li");
 				let itemValue = item.fullInfo;
 				li.appendChild(document.createTextNode(itemValue));
 				ul.appendChild(li);
 			}
-
-			checkboxChecked = true;
 		}
 	}
-		
-	if (!checkboxChecked)
-		reset();
-}
 
-function generalSearch(val) {
-	let result = itemList.filter(element => element.fullInfo.toLowerCase().includes(val.value.toLowerCase()));
-	resetList();  //make ul empty
-
-	//display result
-	const ul = document.getElementById("result");
-	for (item of result) {				
-		let li = document.createElement("li");
-		let itemValue = item.fullInfo;
-		li.appendChild(document.createTextNode(itemValue));
-		ul.appendChild(li);
-	}
+	
 }
 
 function filterByText(original, type, val, res) {

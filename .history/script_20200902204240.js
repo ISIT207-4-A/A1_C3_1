@@ -119,7 +119,7 @@ function reset() {
 		}
 	}
 	
-	const ul = document.getElementById("result");
+	var ul = document.getElementById("result");
 	for (item of itemList) {				
 		let li = document.createElement("li");
 		let itemValue = item.fullInfo;
@@ -140,7 +140,6 @@ function search() {
 	resetList();
 	var temp = document.getElementsByName("attribute");
 	var result = new Array();
-	var checkboxChecked = false;
 
 	for (element of temp) {
 		if (element.checked) {
@@ -185,13 +184,10 @@ function search() {
 				li.appendChild(document.createTextNode(itemValue));
 				ul.appendChild(li);
 			}
-
-			checkboxChecked = true;
 		}
 	}
-		
-	if (!checkboxChecked)
-		reset();
+
+	
 }
 
 function generalSearch(val) {

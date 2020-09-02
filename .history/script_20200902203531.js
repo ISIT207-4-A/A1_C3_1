@@ -118,14 +118,7 @@ function reset() {
 			ele.value = "";
 		}
 	}
-	
-	const ul = document.getElementById("result");
-	for (item of itemList) {				
-		let li = document.createElement("li");
-		let itemValue = item.fullInfo;
-		li.appendChild(document.createTextNode(itemValue));
-		ul.appendChild(li);
-	}  
+	resetList();
 }
 
 function resetList() {
@@ -140,7 +133,6 @@ function search() {
 	resetList();
 	var temp = document.getElementsByName("attribute");
 	var result = new Array();
-	var checkboxChecked = false;
 
 	for (element of temp) {
 		if (element.checked) {
@@ -178,34 +170,17 @@ function search() {
 
 			}
 
-			const ul = document.getElementById("result");
+			var ul = document.getElementById("result");
 			for (item of result) {				
 				let li = document.createElement("li");
 				let itemValue = item.fullInfo;
 				li.appendChild(document.createTextNode(itemValue));
 				ul.appendChild(li);
 			}
-
-			checkboxChecked = true;
 		}
 	}
-		
-	if (!checkboxChecked)
-		reset();
-}
 
-function generalSearch(val) {
-	let result = itemList.filter(element => element.fullInfo.toLowerCase().includes(val.value.toLowerCase()));
-	resetList();  //make ul empty
-
-	//display result
-	const ul = document.getElementById("result");
-	for (item of result) {				
-		let li = document.createElement("li");
-		let itemValue = item.fullInfo;
-		li.appendChild(document.createTextNode(itemValue));
-		ul.appendChild(li);
-	}
+	
 }
 
 function filterByText(original, type, val, res) {

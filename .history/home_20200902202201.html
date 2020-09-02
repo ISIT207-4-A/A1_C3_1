@@ -35,16 +35,18 @@
         <div class="half">
             <p>Please pick one or two attributes</p>
 
-            <span><label><input type="checkbox" name="general" onchange="checkLimit(this)" value="general"> General</label></span>
-            <input type="text" id="general" class="general" placeholder="Anything" onKeyUp="generalSearch(this)" disabled><br /><br />
+            <span><label><input type="checkbox" name="general" onchange="generalSearch(this)" value="general"> Name</label></span>
+            <input type="text" id="general" class="general" placeholder="Anything" disabled><br /><br />
             
             <span><label><input type="checkbox" name="attribute" onchange="checkLimit(this)" value="name"> Name</label></span>
             <input type="text" id="name" class="name" placeholder="Name" disabled><br /><br />
             
             <span><label><input type="checkbox" name="attribute" onchange="checkLimit(this)" value="code"> Code</label></span>
+            
             <input type="text" id="code" class="code" placeholder="Code" disabled><br /><br />
             
             <span><label><input type="checkbox" name="attribute" onchange="checkLimit(this)" value="color"> Color</label></span>
+            
             <input type="text" id="color" class="color" placeholder="Color" disabled>
             <select name="color" id="color-select" class="color" onchange="disableCheck(this)" disabled>
                 <option value="None">---</option>
@@ -57,11 +59,13 @@
             </select>
             <br /><br />
             
-            <span><label><input type="checkbox" name="attribute" onchange="checkLimit(this)" value="price"> Price</label></span> 
+            <span><label><input type="checkbox" name="attribute" onchange="checkLimit(this)" value="price"> Price</label></span>
+            
             <input type="text" id="price" class="price" placeholder="Lower bound price" pattern="^[0-9]+$" disabled>
             <input type="text" id="price" class="price" placeholder="Higher bound price" pattern="^[0-9]+$" disabled><br /><br />
             
             <span><label><input type="checkbox" name="attribute" onchange="checkLimit(this)" value="weight"> Weight</label></span>
+            
             <input type="text" id="weight" class="weight" placeholder="Lower bound weight" pattern="^[0-9]+$" disabled>
             <input type="text" id="weight" class="weight" placeholder="Higher bound weight" pattern="^[0-9]+$" disabled><br /><br />
 

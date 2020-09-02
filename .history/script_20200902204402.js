@@ -185,13 +185,10 @@ function search() {
 				li.appendChild(document.createTextNode(itemValue));
 				ul.appendChild(li);
 			}
-
-			checkboxChecked = true;
 		}
 	}
-		
-	if (!checkboxChecked)
-		reset();
+
+	
 }
 
 function generalSearch(val) {
