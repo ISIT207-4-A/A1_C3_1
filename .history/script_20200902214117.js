@@ -190,19 +190,17 @@ function search() {
 
 			}
 
-			
-
-			checkboxChecked = true;
-		}
-	}
-
-	const ul = document.getElementById("result");
+			const ul = document.getElementById("result");
 			for (item of result) {				
 				let li = document.createElement("li");
 				let itemValue = item.fullInfo;
 				li.appendChild(document.createTextNode(itemValue));
 				ul.appendChild(li);
 			}
+
+			checkboxChecked = true;
+		}
+	}
 		
 	if (!checkboxChecked)
 		reset();
@@ -222,17 +220,17 @@ function generalSearch(val) {
 	}
 }
 
-function filterByText(original, type, val) {
+function filterByText(original, type, val, res) {
 	let result;
 	switch (type) {
 		case "name":
-			result = original.filter(element => element.name.toLowerCase().includes(val.toLowerCase()));
+			result = original.filter(element => element.name.toLowerCase().includes(val.toLowerCase()) && (!res.includes(element)));
 			break;
 		case "code":
-			result = original.filter(element => element.code.toLowerCase().includes(val.toLowerCase()));
+			result = original.filter(element => element.code.toLowerCase().includes(val.toLowerCase()) && (!res.includes(element)));
 			break;
 		case "color":
-			result = original.filter(element => element.color.toLowerCase().includes(val.toLowerCase()));
+			result = original.filter(element => element.color.toLowerCase().includes(val.toLowerCase()) && (!res.includes(element)));
 			break;
 		default:
 			break;
@@ -240,18 +238,18 @@ function filterByText(original, type, val) {
 	return result;
 }
 
-function advancedFilterByText(original, type, val, direction) {
+function advancedFilterByText(original, type, val, res, direction) {
 	var result;
 	if (direction == "start") {
 		switch (type) {
 			case "name":
-				result = original.filter(element => element.name.toLowerCase().startsWith(val.toLowerCase()));
+				result = original.filter(element => element.name.toLowerCase().startsWith(val.toLowerCase()) && !res.includes(element));
 				break;
 			case "code":
-				result = original.filter(element => element.code.toLowerCase().startsWith(val.toLowerCase()));
+				result = original.filter(element => element.code.toLowerCase().startsWith(val.toLowerCase()) && !res.includes(element));
 				break;
 			case "color":
-				result = original.filter(element => element.color.toLowerCase().startsWith(val.toLowerCase()));
+				result = original.filter(element => element.color.toLowerCase().startsWith(val.toLowerCase()) && !res.includes(element));
 				break;
 			default:
 				break;
@@ -260,13 +258,13 @@ function advancedFilterByText(original, type, val, direction) {
 	else if (direction == "end") {
 		switch (type) {
 			case "name":
-				result = original.filter(element => element.name.toLowerCase().endsWith(val.toLowerCase()));
+				result = original.filter(element => element.name.toLowerCase().endsWith(val.toLowerCase())  && !res.includes(element));
 				break;
 			case "code":
-				result = original.filter(element => element.code.toLowerCase().endsWith(val.toLowerCase()));
+				result = original.filter(element => element.code.toLowerCase().endsWith(val.toLowerCase()) && !res.includes(element));
 				break;
 			case "color":
-				result = original.filter(element => element.color.toLowerCase().endsWith(val.toLowerCase()));
+				result = original.filter(element => element.color.toLowerCase().endsWith(val.toLowerCase()) && !res.includes(element));
 				break;
 			default:
 				break;
@@ -275,15 +273,15 @@ function advancedFilterByText(original, type, val, direction) {
 	return result;
 }
 
-function filterByRange(original, type, lower, upper) {
+function filterByRange(original, type, lower, upper, res) {
 	var result;
 
 	switch (type) {
 		case "price":
-			result = original.filter(element => (element.price >= lower && element.price <= upper));
+			result = original.filter(element => (element.price >= lower && element.price <= upper) && !res.includes(element));
 			break;
 		case "weight":
-			result = original.filter(element => (element.weight >= lower && element.weight <= upper));
+			result = original.filter(element => (element.weight >= lower && element.weight <= upper) && !res.includes(element));
 			break;
 		default:
 			break;

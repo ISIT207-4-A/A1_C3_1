@@ -190,19 +190,17 @@ function search() {
 
 			}
 
-			
-
-			checkboxChecked = true;
-		}
-	}
-
-	const ul = document.getElementById("result");
+			const ul = document.getElementById("result");
 			for (item of result) {				
 				let li = document.createElement("li");
 				let itemValue = item.fullInfo;
 				li.appendChild(document.createTextNode(itemValue));
 				ul.appendChild(li);
 			}
+
+			checkboxChecked = true;
+		}
+	}
 		
 	if (!checkboxChecked)
 		reset();
