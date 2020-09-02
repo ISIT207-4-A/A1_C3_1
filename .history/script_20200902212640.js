@@ -111,8 +111,6 @@ function checkLimit(checkboxStatus) {
 //reset button
 function reset() {
 	resetList();
-	countCheck = 0;
-	limitAll = false;
 
 	for (element of document.getElementsByName("attribute")) {
 		element.checked = false;
@@ -122,14 +120,12 @@ function reset() {
 			ele.value = "";
 		}
 	}
-	
-	//reset general search fields
+
 	document.getElementsByName("general").forEach(function(element) {
 		element.checked = false;
-		console.log(element);
 	});
 	document.getElementById("general").disabled = true;
-	
+	limitAll = false;
 	
 	const ul = document.getElementById("result");
 	for (item of itemList) {				
