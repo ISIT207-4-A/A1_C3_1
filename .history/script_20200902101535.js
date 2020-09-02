@@ -139,18 +139,16 @@ function search() {
 				result = filterByRange(itemList, element.value, lowerVal, upperVal, result);
 
 			}
-
-			var ul = document.getElementById("result");
-			for (item of result) {				
-				let li = document.createElement("li");
-				let itemValue = item.name + " " + item.code + " " + item.color + " " + item.price + " " + item.weight;
-				li.appendChild(document.createTextNode(itemValue));
-				ul.appendChild(li);
-			}
 		}
 	}
 
-	
+	var ul = document.getElementById("result");
+	for (item of result) {				
+		let li = document.createElement("li");
+		let itemValue = item.name + " " + item.code + " " + item.color + " " + item.price + " " + item.weight;
+		li.appendChild(document.createTextNode(itemValue));
+		ul.appendChild(li);
+	}
 }
 
 function filterByText(original, type, val, res) {
